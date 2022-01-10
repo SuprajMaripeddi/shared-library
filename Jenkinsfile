@@ -1,2 +1,2 @@
-@Library('SharedLibrary') _
+@Library('SharedLibrary')_
 welcomeJob ‘lambdatest’
