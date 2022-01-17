@@ -1,2 +1,2 @@
 github 1.2.3
-jenkins 2.3.4
+jenkins 4.4.4
