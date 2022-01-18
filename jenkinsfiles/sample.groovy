@@ -2,7 +2,9 @@ pipeline {
     agent any
 
    //  Checking Environment Variables
- 
+    tools{
+    maven 'maven'
+    }
     stages {
         stage ('Initialize') {
             steps {
