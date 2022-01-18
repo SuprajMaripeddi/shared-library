@@ -18,7 +18,7 @@ pipeline {
 
         stage ('git clone') {
             steps {
-              git branch: 'master', url: "https://github.com/SuprajMaripeddi/shared-library.git" 
+              git branch: 'master', url: "https://github.com/SuprajMaripeddi/shared-library.git", credentialsId: 'github'
             }
         }
         stage ('Build') {
