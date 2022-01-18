@@ -21,6 +21,13 @@ pipeline {
               git branch: 'master', url: "https://github.com/sainath028/vprofile-repo.git"
             }
         }
+           stage ('Scan and Build Jar File') {
+            steps {
+               withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'sonar') {
+                sh 'mvn clean package sonar:sonar'
+                }
+            }
+        }
         stage ('Build') {
             steps {
                 sh "mvn clean install -DskipTests"
