@@ -1,12 +1,14 @@
-@Library('shared-library')_
+@Library('shared-library') _
 
+import com.aws.ce.pipeline.GlobalVars
+
+def config = [name: 'Newman', dayOfWeek: 'Friday']
 pipeline {
     agent any
     stages {
-        stage ('Run only if approval exists') {
+        stage('Example') {
             steps {
-                welcomeJob ‘lambdatest’
-                echo "The build has been approved!!!"
+                helloWorld(config)
             }
         }
     }
