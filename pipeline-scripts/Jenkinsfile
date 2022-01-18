@@ -1,3 +1,5 @@
+
+   
 @Library('shared-library') _
 
 import com.aws.ce.pipeline.GlobalVars
@@ -9,6 +11,11 @@ pipeline {
         stage('Example') {
             steps {
                 helloWorld(config)
+                script{
+                    log.info 'Starting'
+                log.warning 'Nothing to do!'
+                    echo GlobalVars.GITHUB_HOST
+                }
             }
         }
     }
