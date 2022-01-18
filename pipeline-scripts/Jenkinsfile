@@ -12,7 +12,7 @@ pipeline {
                 script{
                     log.info 'Starting'
                 log.warning 'Nothing to do!'
-                    echo Common.GITHUB_HOST
+                    echo GlobalVars.GITHUB_HOST
                 }
             }
         }
