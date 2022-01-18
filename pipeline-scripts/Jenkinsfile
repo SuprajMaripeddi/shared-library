@@ -9,8 +9,10 @@ pipeline {
         stage('Example') {
             steps {
                 helloWorld(config)
-                log.info 'Starting'
+                script{
+                    log.info 'Starting'
                 log.warning 'Nothing to do!'
+                }
             }
         }
     }
