@@ -18,7 +18,7 @@ pipeline {
 
         stage ('git clone') {
             steps {
-              git branch: 'main', url: "https://github.com/SuprajMaripeddi/shared-library.git", credentialsId: 'github'
+              git branch: 'main', url: "https://github.com/sainath028/vprofile-repo.git"
             }
         }
         stage ('Build') {
