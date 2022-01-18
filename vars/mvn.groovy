@@ -1,28 +1,25 @@
 def call() {
   pipeline {
-      agent any
-      stages {
-          stage ('Compile Stage') {
-              steps {
-                  withMaven(maven : 'apache-maven-3.6.1') {
-                  bat'mvn clean compile'
-                  }
-              }
-          }
-          stage ('Testing Stage') {
-              steps {
-                  withMaven(maven : 'apache-maven-3.6.1') {
-                  bat'mvn test'
-                  }
-              }
-          }
-          stage ('Install Stage') {
-              steps {
-                  withMaven(maven : 'apache-maven-3.6.1') {
-                      bat'mvn install'
-                  }
-              }
-          }
-      }
-  }
+    agent any
+    tools { 
+        maven 'Maven 3.3.9' 
+        jdk 'jdk8' 
+    }
+    stages {
+        stage ('Initialize') {
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                ''' 
+            }
+        }
+
+        stage ('Build') {
+            steps {
+                echo 'This is a minimal pipeline.'
+            }
+        }
+    }
+}
 }
