@@ -2,8 +2,8 @@ def call() {
   pipeline {
     agent any
     tools { 
-        maven 'maven 3.3.9' 
-        jdk 'jdk8' 
+        maven 'maven' 
+        jdk 'jdk9' 
     }
     stages {
         stage ('Initialize') {
