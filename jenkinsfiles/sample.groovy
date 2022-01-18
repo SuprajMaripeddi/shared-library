@@ -18,7 +18,7 @@ pipeline {
 
         stage ('git clone') {
             steps {
-              git branch: 'main', url: "https://github.com/sainath028/vprofile-repo.git"
+              git branch: 'master', url: "https://github.com/sainath028/vprofile-repo.git"
             }
         }
         stage ('Build') {
