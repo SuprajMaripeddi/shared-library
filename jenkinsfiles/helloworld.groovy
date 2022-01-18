@@ -11,7 +11,7 @@ pipeline {
         stage('Example') {
             steps {
                 helloWorld(config)
-               mvn()
+               
                 script{
                     log.info 'Starting'
                 log.warning 'Nothing to do!'
