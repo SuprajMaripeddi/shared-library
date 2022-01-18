@@ -6,11 +6,11 @@
 // jenkinsForJava.groovy
 def call(String repoUrl) {
  pipeline {
-    agent {
-        docker {
+    agent  any {
+
             image 'maven:3-alpine'
             args '-v /root/.m2:/root/.m2'
-        }
+
     }
     stages {
         stage('Build') {
