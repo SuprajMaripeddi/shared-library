@@ -32,8 +32,7 @@ pipeline {
             steps {
                 sh "mvn clean install package -DskipTests"
                 //nexusPublisher nexusInstanceId: 'releases', nexusRepositoryId: 'scm', packages: [[$class: 'MavenPackage', mavenAssetList: [], mavenCoordinate: [artifactId: 'my-app', groupId: 'com.mycompany.app', packaging: 'jar', version: '1.0-SNAPSHOT']]]
-                nexusArtifactUploader credentialsId: 'nexus', groupId: 'com.mycompany.app', nexusUrl: 'http://52.15.201.38:8081/', nexusVersion: 'nexus3', protocol: 'http', repository: 'scm', version: '1.0-SNAPSHOT'
-            }
+                nexusArtifactUploader artifacts: [[artifactId: 'my-app', classifier: '', file: 'devopp/target/my-app-1.0-SNAPSHOT.jar', type: 'jar']], credentialsId: 'nexus', groupId: 'com.mycompany.app', nexusUrl: 'http://52.15.201.38:8081/', nexusVersion: 'nexus3', protocol: 'http', repository: 'scm', version: '1.0-SNAPSHOT'            }
         }      
     }
 }
