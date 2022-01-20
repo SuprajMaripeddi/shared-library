@@ -18,7 +18,7 @@ pipeline {
 
         stage ('git clone') {
                 steps {
-                git branch: 'master', url: "https://github.com/SuprajMaripeddi/simple-java-maven-app.git"
+                git branch: 'master', url: "https://github.com/SuprajMaripeddi/TomcatMavenApp.git"
                 }
         }
         stage ('Scan and Build Jar File') {
@@ -37,7 +37,7 @@ pipeline {
         stage ('Publish') {
             steps {
                     //nexusPublisher nexusInstanceId: 'releases', nexusRepositoryId: 'scm', packages: [[$class: 'MavenPackage', mavenAssetList: [], mavenCoordinate: [artifactId: 'my-app', groupId: 'com.mycompany.app', packaging: 'jar', version: '1.0-SNAPSHOT']]]
-                nexusArtifactUploader artifacts: [[artifactId: 'my-app', classifier: '', file: '/var/lib/jenkins/workspace/devopp/target/my-app-1.0-SNAPSHOT.war', type: 'war']], credentialsId: 'nexus', groupId: 'com.mycompany.app', nexusUrl: '52.15.201.38:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'scm', version: '1.0-SNAPSHOT'            
+                nexusArtifactUploader artifacts: [[artifactId: 'TomcatMavenApp', classifier: '', file: '/var/lib/jenkins/workspace/devopp/target/my-app-1.0-SNAPSHOT.war', type: 'war']], credentialsId: 'nexus', groupId: 'com.sarav', nexusUrl: '52.15.201.38:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'scm', version: '2.0'            
             } 
         }
         stage ('deploy') {
