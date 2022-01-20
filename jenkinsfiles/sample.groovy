@@ -30,7 +30,8 @@ pipeline {
         }
         stage ('Build') {
             steps {
-                sh "mvn clean install -DskipTests"
+                sh "mvn clean install package -DskipTests"
+                nexusArtifactUploader credentialsId: 'nexus', groupId: 'com.mycompany.app', nexusUrl: 'http://52.15.201.38:8081/', nexusVersion: 'nexus2', protocol: 'http', repository: 'scm', version: '1.0-SNAPSHOT'
             }
         }      
     }
