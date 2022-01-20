@@ -18,7 +18,7 @@ pipeline {
 
         stage ('git clone') {
                 steps {
-                git branch: 'master', url: "https://github.com/jenkins-docs/simple-java-maven-app.git"
+                git branch: 'master', url: "https://github.com/SuprajMaripeddi/simple-java-maven-app.git"
                 }
         }
         stage ('Scan and Build Jar File') {
