@@ -37,7 +37,7 @@ pipeline {
         stage ('Publish') {
             steps {
                     //nexusPublisher nexusInstanceId: 'releases', nexusRepositoryId: 'scm', packages: [[$class: 'MavenPackage', mavenAssetList: [], mavenCoordinate: [artifactId: 'my-app', groupId: 'com.mycompany.app', packaging: 'jar', version: '1.0-SNAPSHOT']]]
-                nexusArtifactUploader artifacts: [[artifactId: 'TomcatMavenApp', classifier: '', file: '/var/lib/jenkins/workspace/devopp/target/TomcatMavenApp-2.0.war', type: 'war']], credentialsId: 'nexus', groupId: 'com.sarav', nexusUrl: '52.15.201.38:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'scm', version: '2.0'            
+                nexusArtifactUploader artifacts: [[artifactId: 'TomcatMavenApp', classifier: '', file: '/var/lib/jenkins/workspace/devopp/target/TomcatMavenApp-2.0.war', type: 'war']], credentialsId: 'nexus', groupId: 'com.sarav', nexusUrl: '52.15.201.38:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'scm', version: '2.0-SNAPSHOT'            
             } 
         }
         stage ('deploy') {
