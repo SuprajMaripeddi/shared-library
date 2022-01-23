@@ -50,7 +50,7 @@ pipeline {
                 tomcatDeploy(
                     credentialsId: 'tomcat', 
                     path: '', 
-                    url: 'http://52.14.121.104:8080/',
+                    url: 'http://3.138.154.124:8080/',
                     contextPath: 'app', 
                     war: '**/*.war'
                 )
