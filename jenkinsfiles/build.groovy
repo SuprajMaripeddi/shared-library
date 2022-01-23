@@ -49,7 +49,7 @@ pipeline {
             steps {
                 tomcatDeploy(
                     credentialsId: 'tomcat', 
-                    path: '', 
+                    path: '/var/lib/jenkins/workspace/devopp/target/TomcatMavenApp-2.0.war', 
                     url: 'http://3.135.239.250:8080/',
                     contextPath: 'app', 
                     war: '**/*.war'
