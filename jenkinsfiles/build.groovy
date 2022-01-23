@@ -25,7 +25,6 @@ pipeline {
         stage ('Build') {
             steps {
                  withMaven("mvn clean install package -DskipTests")
-                    //nexusPublisher nexusInstanceId: 'releases', nexusRepositoryId: 'scm', packages: [[$class: 'MavenPackage', mavenAssetList: [], mavenCoordinate: [artifactId: 'my-app', groupId: 'com.mycompany.app', packaging: 'jar', version: '1.0-SNAPSHOT']]]
             } 
         }
         stage ('Publish') {
@@ -45,12 +44,23 @@ pipeline {
                 )           
             } 
         }
-        stage ('deploy') {
+        stage ('deploy in stage env') {
             steps {
                 tomcatDeploy(
                     credentialsId: 'tomcat', 
                     path: '/var/lib/jenkins/workspace/devopp/target/TomcatMavenApp-3.0.war', 
                     url: 'http://3.135.239.250:8080/',
+                    contextPath: 'app', 
+                    war: '**/*.war'
+                )
+            }       
+        }
+         stage ('deploy in UAT env') {
+            steps {
+                tomcatDeploy(
+                    credentialsId: 'tomcat', 
+                    path: '/var/lib/jenkins/workspace/devopp/target/TomcatMavenApp-3.0.war', 
+                    url: 'http://3.14.67.198:8080/',
                     contextPath: 'app', 
                     war: '**/*.war'
                 )
