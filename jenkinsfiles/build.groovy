@@ -32,7 +32,7 @@ pipeline {
                 nexusArtifcatUploader(
                     artifactId: 'TomcatMavenApp', 
                     classifier: '', 
-                    file: '/var/lib/jenkins/workspace/devopp/target/TomcatMavenApp-3.0.war', 
+                    file: '/var/lib/jenkins/workspace/devopp/target/TomcatMavenApp-3.0-SNAPSHOT.war', 
                     type: 'war', 
                     credentialsId: 'nexus', 
                     groupId: 'com.sarav', 
@@ -48,7 +48,7 @@ pipeline {
             steps {
                 tomcatDeploy(
                     credentialsId: 'tomcat', 
-                    path: '/var/lib/jenkins/workspace/devopp/target/TomcatMavenApp-3.0.war', 
+                    path: '', 
                     url: 'http://3.135.239.250:8080/',
                     contextPath: 'app', 
                     war: '**/*.war'
@@ -59,7 +59,7 @@ pipeline {
             steps {
                 tomcatDeploy(
                     credentialsId: 'tomcat', 
-                    path: '/var/lib/jenkins/workspace/devopp/target/TomcatMavenApp-3.0.war', 
+                    path: '', 
                     url: 'http://3.14.67.198:8080/',
                     contextPath: 'app', 
                     war: '**/*.war'
