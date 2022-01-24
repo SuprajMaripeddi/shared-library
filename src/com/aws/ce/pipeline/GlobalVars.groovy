@@ -1,6 +1,5 @@
 package com.aws.ce.pipeline
  //Testing variables
 class Common {
-    public static final String GITHUB_PROTOCOL = 'ssh'
-    public static final String GITHUB_HOST = 'github.aws.com'
+    public static final String WarFilePath = '/var/lib/jenkins/workspace/devopp/target/'
 }
