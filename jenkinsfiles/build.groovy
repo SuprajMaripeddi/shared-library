@@ -35,7 +35,7 @@ pipeline {
                     artifactId: 'TomcatMavenApp', 
                     classifier: '', 
                     //file: '/var/lib/jenkins/workspace/devopp/target/TomcatMavenApp-1.0-SNAPSHOT.war', 
-                    file: GlobalVars.WarFilePath'-TomcatMavenApp-1.0-SNAPSHOT.war', 
+                    file: GlobalVars.WarFilePath"-TomcatMavenApp-1.0-SNAPSHOT.war", 
                     type: 'war', 
                     credentialsId: 'nexus', 
                     groupId: 'com.tomcat', 
