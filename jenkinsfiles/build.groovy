@@ -32,7 +32,7 @@ pipeline {
                 nexusArtifcatUploader(
                     artifactId: 'TomcatMavenApp', 
                     classifier: '', 
-                    file: '/var/lib/jenkins/workspace/devopp/target/TomcatMavenApp-2.0.war', 
+                    file: '/var/lib/jenkins/workspace/devopp/target/TomcatMavenApp-2.0-SNAPSHOT.war', 
                     type: 'war', 
                     credentialsId: 'nexus', 
                     groupId: 'com.sarav', 
