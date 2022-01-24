@@ -1,0 +1,51 @@
+SonarQube
+
+
+SonarQube is a open source platform developed by SonarSource for continuous inspacetion of code quality to perform automatic
+reviews with static analysis of code to detect bugs, code smells and security vulnerabilities.
+With Maven and Gradle, build task you can run SonarQube analysis with minimal setup in Virtual machine.
+SonarQube is a web-based open-source platform used to measure and analyse the source code quality. SonarQube is written in
+java but it can analyze and manage code of more than 20 programming languages, including c/c++, PL/SQL, Cobol etc through
+plugins
+
+To install a sonarqube on ec2 machine. Today we will be installing a Sonarqube on Ubuntu machine which has Instance type-
+t2.medium and has cpu-2 and memory 4GB.
+
+Once the instance is launched, SSH into it and run the following commands to install Docker:
+1. Install Docker
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+sudo apt-get update
+
+apt-cache policy docker-ce
+
+sudo apt-get install -y docker-ce
+
+sudo usermod -aG docker ubuntu
+
+sudo systemctl status docker
+2. Install Docker compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-co
+change permissions
+sudo chmod +x /usr/local/bin/docker-compose
+Check version
+docker-compose --version
+Install Sonar
+
+SonarQube 2
+sudo sysctl -w vm.max_map_count=262144
+Make a new directory
+mkdir sonar
+
+wget https://raw.githubusercontent.com/awstechguide/devops/master/docker-compose.yml
+
+sudo docker–compose up
+Once you see the below screen, Hit the public ip of the ec2 machine followed by :9000. Make sure you whitelist the port no 9000 in
+the security group of the EC2 Machine.
+
+Once you hit the ip followed by :9000. Below screen should be visible
+
+SonarQube 3
+Default username and password is admin admin.
