@@ -40,7 +40,7 @@ pipeline {
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
                     repository: 'scm', 
-                    version: '2.0' 
+                    version: '2.0-SNAPSHOT' 
                 )           
             } 
         }
