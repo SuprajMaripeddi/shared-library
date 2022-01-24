@@ -1,0 +1,124 @@
+Nexus-Storing artifacts in Nexus after build
+Problem Statement: In the document below, We will be storing our build artifacts in the Nexus.
+Install Nexus on Ubuntu machine
+1. Launch a Ubuntu instance, instance type as t3.medium(which has minimum 4 cpu's) and root storage as 20GB.
+2. Security group as ssh- my ip and Custom TCP-8081 Open to the world.
+3. update the system packages
+4.
+sudo apt-get update
+Install OpenJDK 1.8 on Ubuntu 20.04 LTS
+sudo apt install openjdk-8-jre-headless
+Download Nexus Repository Manager setup on Ubuntu 20.04 LTS
+Download the latest Nexus Repository Manager Setup from official nexus page.
+Navigate to /opt directory
+cd /opt
+Download the SonaType Nexus on Ubuntu using wget
+sudo wget https://download.sonatype.com/nexus/3/latest-unix.tar.gz
+#3: Install Nexus Repository on Ubuntu 20.04 LTS
+Extract the Nexus repository setup in /opt directory
+sudo tar -zxvf latest-unix.tar.gz
+Rename the extracted Nexus setup folder to nexus
+ls
+
+sudo mv /opt/nexus-3.36.0-01 /opt/nexus
+As security practice, not to run nexus service using root user, so lets create new user named nexus to run nexus service
+sudo adduser nexus
+Type and Retype a password to it. Enter the details(optional)
+To set no password for nexus user open the visudo file in ubuntu
+
+Nexus-Storing artifacts in Nexus after build 2
+sudo visudo
+Add below line into it , save and exit
+nexus ALL=(ALL) NOPASSWD: ALL
+Give permission to nexus files and nexus directory to nexus user
+sudo chown -R nexus:nexus /opt/nexus
+
+sudo chown -R nexus:nexus /opt/sonatype-work
+To run nexus as service at boot time, open /opt/nexus/bin/nexus.rc file, uncomment it and add nexus user as shown below
+sudo nano /opt/nexus/bin/nexus.rc
+
+run_as_user="nexus"
+To Increase the nexus JVM heap size, open the /opt/nexus/bin/nexus.vmoptions file, you can modify the size as shown below
+In the below settings, the directory is changed from ../sonatype-work to ./sonatype-work
+-Xms1024m
+-Xmx1024m
+-XX:MaxDirectMemorySize=1024m
+-XX:LogFile=./sonatype-work/nexus3/log/jvm.log
+-XX:-OmitStackTraceInFastThrow
+-Djava.net.preferIPv4Stack=true
+-Dkaraf.home=.
+-Dkaraf.base=.
+-Dkaraf.etc=etc/karaf
+-Djava.util.logging.config.file=/etc/karaf/java.util.logging.properties
+-Dkaraf.data=./sonatype-work/nexus3
+-Dkaraf.log=./sonatype-work/nexus3/log
+-Djava.io.tmpdir=./sonatype-work/nexus3/tmp
+#4: Run Nexus as a service using Systemd
+To run nexus as service using Systemd
+sudo nano /etc/systemd/system/nexus.service
+paste the below lines into it.
+[Unit]
+Description=nexus service
+After=network.target
+[Service]
+Type=forking
+LimitNOFILE=65536
+ExecStart=/opt/nexus/bin/nexus start
+ExecStop=/opt/nexus/bin/nexus stop
+User=nexus
+Restart=on-abort
+[Install]
+WantedBy=multi-user.target
+
+Nexus-Storing artifacts in Nexus after build 3
+To start nexus service using systemctl
+sudo systemctl start nexus
+To enable nexus service at system startup
+sudo systemctl enable nexus
+To check nexus service status
+sudo systemctl status nexus
+To stop Nexus service
+sudo systemctl stop nexus
+if the nexus service is not started, you can the nexus logs using below command
+tail -f /opt/sonatype-work/nexus3/log/nexus.log
+We have covered How to Install Nexus Repository on Ubuntu 20.04 LTS.
+#5: Access Nexus Repository Web Interface
+To access Nexus repository web interface , open your favorite browser
+if you are running UFW firewall on Ubuntu, open the firewall port 8081 using below command
+sudo ufw allow 8081/tcp
+
+http://server_IP:8081
+you will see below default nexus page
+
+Nexus-Storing artifacts in Nexus after build 4
+To login to Nexus, click on Sign In, default username is admin
+To find default password run the below command
+cat /opt/nexus/sonatype-work/nexus3/admin.password
+copy the default nexus password and login, you can reset the password once logged in to nexus
+Below nexus setup wizard will show
+Change the password
+configure Anonymous Access
+
+Nexus-Storing artifacts in Nexus after build 5
+Next and click on Finish.
+
+Create a Repository
+Click on the Settings button
+Click on Repositories > create a new repository > select maven2(hosted)
+give it a name.
+Version policy - select "Mixed"
+Layout Policy - permissive
+In Hosted - Deployment Policy - Allow redeploy
+Click on Create Repository
+
+Create a Local User
+In security tab, Select Users -
+id - jenkins-user
+firstname - jenkins
+lastname - user
+email- provide id
+password - 12345
+retype password - 12345
+status - active
+In availables - double click on nx-admin to select
+Click on create local user
