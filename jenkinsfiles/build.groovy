@@ -35,7 +35,7 @@ pipeline {
                     file: '/var/lib/jenkins/workspace/devopp/target/TomcatMavenApp-1.0.war', 
                     type: 'war', 
                     credentialsId: 'nexus', 
-                    groupId: 'com.sarav', 
+                    groupId: 'com.tomcat', 
                     nexusUrl: '52.15.201.38:8081', 
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
