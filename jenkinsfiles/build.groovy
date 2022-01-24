@@ -32,7 +32,7 @@ pipeline {
                 nexusArtifcatUploader(
                     artifactId: 'TomcatMavenApp', 
                     classifier: '', 
-                    file: '/var/lib/jenkins/workspace/devopp/target/TomcatMavenApp-3.0-SNAPSHOT.war', 
+                    file: '/var/lib/jenkins/workspace/devopp/target/TomcatMavenApp-4.0.war', 
                     type: 'war', 
                     credentialsId: 'nexus', 
                     groupId: 'com.sarav', 
@@ -40,7 +40,7 @@ pipeline {
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
                     repository: 'scm', 
-                    version: '3.0' 
+                    version: '4.0' 
                 )           
             } 
         }
