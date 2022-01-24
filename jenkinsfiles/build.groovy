@@ -55,27 +55,29 @@ pipeline {
                 )
             }       
         }
-         stage ('deploy in UAT env') {
-            steps {
-                tomcatDeploy(
-                    credentialsId: 'tomcat', 
-                    path: '', 
-                    url: 'http://3.14.67.198:8080/',
-                    contextPath: 'app', 
-                    war: '**/*.war'
-                )
-            }       
-        }
-          stage ('deploy in PROD env') {
-            steps {
-                tomcatDeploy(
-                    credentialsId: 'tomcat', 
-                    path: '', 
-                    url: 'http://52.15.228.249:8080/',
-                    contextPath: 'app', 
-                    war: '**/*.war'
-                )
-            }       
-        }
+// /*         stage ('deploy in UAT env') {
+//             steps {
+//                 tomcatDeploy(
+//                     credentialsId: 'tomcat', 
+//                     path: '', 
+//                     url: 'http://3.14.67.198:8080/',
+//                     contextPath: 'app', 
+//                     war: '**/*.war'
+//                 )
+//             }       
+//         }
+
+//           stage ('deploy in PROD env') {
+//             steps {
+//                 tomcatDeploy(
+//                     credentialsId: 'tomcat', 
+//                     path: '', 
+//                     url: 'http://52.15.228.249:8080/',
+//                     contextPath: 'app', 
+//                     war: '**/*.war'
+//                 )
+//             }       
+//         }
+//         */
     }
 }
