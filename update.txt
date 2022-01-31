@@ -2,3 +2,4 @@
 "bye: 3.2"
 "vinay: 5.5"
 "jenkins: 2.2"
+"jira: 55.5"
